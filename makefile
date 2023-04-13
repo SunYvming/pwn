@@ -1,12 +1,19 @@
 CC ?= gcc
 CXX ?= g++
 
-CFLAGS=-fno-stack-protector -no-pie -g -O0
+CFLAGS=-fno-stack-protector -no-pie -g -O0 -m32
+CFLAGS_EXTRA=-z execstack -z norelro
 
-all: ret2text
+all: ret2text ret2shellcode ret2ret
 
 ret2text:
 	$(CC) $(CFLAGS) -o ret2text.out ret2text.c
+
+ret2shellcode:
+	$(CC) $(CFLAGS) $(CFLAGS_EXTRA) -o ret2shellcode.out ret2shellcode.c
+
+ret2ret:
+	$(CC) $(CFLAGS) $(CFLAGS_EXTRA) -o ret2ret.out ret2ret.c
 
 clean:
 	rm *.out
