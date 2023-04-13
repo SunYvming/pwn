@@ -7,8 +7,7 @@ void success() { puts("Hijack success!"); }
 
 void vulnerable() {
   char s[12];
-//   scanf("%s", s);
-    gets(s);
+  scanf("%s", s);
   puts(s);
   return;
 }

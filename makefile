@@ -7,3 +7,6 @@ all: ret2text
 
 ret2text:
 	$(CC) $(CFLAGS) -o ret2text.out ret2text.c
+
+clean:
+	rm *.out
