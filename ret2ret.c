@@ -4,7 +4,7 @@
 
 void function()
 {
-    char buff[256];
+    char buff[512];
     gets(buff);
 }
 
