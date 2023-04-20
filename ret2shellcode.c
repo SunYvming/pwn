@@ -2,12 +2,14 @@
 #include <string.h>
 #include <sys/mman.h>
 
+char *gets (char *str);
+
 char buf2[100] = "hello world\0";
 
 void func(){
     char buf[100];
     gets(buf);
-    gets(buf2);
+    strncpy(buf2, buf, 100);
 }
 
 int main(void)

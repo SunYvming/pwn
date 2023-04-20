@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 from pwn import *
 
 SH = 0x0804a008

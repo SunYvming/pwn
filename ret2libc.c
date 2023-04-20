@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <time.h>
 
+char *gets (char *str);
+
 char *shell = "/bin/sh";
 char buf2[100];
 
